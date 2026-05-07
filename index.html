@@ -143,7 +143,12 @@
     gap: 8px; padding: 12px;
   }
   @media (max-width: 600px) {
-    .cartas-grid { grid-template-columns: repeat(2, 1fr); }
+    .cartas-grid { gap: 4px; padding: 6px; }
+    .carta-item { padding: 6px 4px; }
+    .carta-nombre { font-size: 0.65rem; }
+    .carta-set { font-size: 0.55rem; }
+    .carta-rareza { font-size: 0.5rem; padding: 1px 4px; }
+    .carta-precio { font-size: 0.75rem; }
   }
   .carta-item {
     background: #120800; border: 2px solid var(--border);
