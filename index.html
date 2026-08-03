@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<script>document.title="Carpeta "+CFG.SHEET_NAME;</script>
+<script>document.title="Carpeta Charmander";</script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d0d1a;--surf:#141428;--surf2:#1c1c38;--brd:rgba(255,255,255,0.08);--brd2:rgba(255,255,255,0.15);--acc:#7c5cbf;--gold:#e8c84a;--rev:#ff6b35;--tx:#e8e6f0;--txm:#8885a8;--red:#ff4d4d;--accent:#e8ff47;--accent-dim:rgba(232,255,71,0.12);--accent-text:#0d0d0f;--radius:10px;--radius-sm:7px;--green:#47ffb2}
@@ -287,7 +287,7 @@ header p{font-size:.75rem;color:var(--txm);margin-top:1px}
   <div class="head-left">
     <div class="brand-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4.09 12.97a1 1 0 0 0 .77 1.63H11l-1 7.4 8.91-10.97a1 1 0 0 0-.77-1.63H12l1-7.4z" fill="#e8c84a"/></svg></div>
     <div>
-      <h1>Carpeta " + CFG.SHEET_NAME + "</h1>
+      <h1>Carpeta Charmander</h1>
       <p>Elige tu idioma en cada carta y agrégala al carrito</p>
     </div>
   </div>
@@ -322,9 +322,9 @@ header p{font-size:.75rem;color:var(--txm);margin-top:1px}
     <div class="cart-head"><h2>Pegar listado</h2><button class="cart-close" onclick="cerrarPegarListado()">x</button></div>
     <div class="paste-body">
       <div class="lista-hint">Pega tu lista, <b>una carta por línea</b>. Reconoce varios formatos:
-        <div class="lista-ej">4 " + CFG.SHEET_NAME + " EVS 49<br>2 " + CFG.SHEET_NAME + " Silver Tempest<br>" + CFG.SHEET_NAME + " PGO 28<br>Flying " + CFG.SHEET_NAME + " x3<br>" + CFG.SHEET_NAME + " 25</div>
+        <div class="lista-ej">4 Charmander EVS 49<br>2 Charmander Silver Tempest<br>Charmander PGO 28<br>Flying Charmander x3<br>Charmander 25</div>
       </div>
-      <textarea id="paste-textarea" placeholder="4 " + CFG.SHEET_NAME + " EVS 49&#10;2 " + CFG.SHEET_NAME + " Silver Tempest&#10;Flying " + CFG.SHEET_NAME + " x3&#10;" + CFG.SHEET_NAME + " 25"></textarea>
+      <textarea id="paste-textarea" placeholder="4 Charmander EVS 49&#10;2 Charmander Silver Tempest&#10;Flying Charmander x3&#10;Charmander 25"></textarea>
       <div style="display:flex;gap:8px">
         <button class="vb" style="flex:1;padding:9px" onclick="cotizarListaPK()">Cotizar lista</button>
         <button class="vb" style="padding:9px 14px" onclick="limpiarListaPK()" title="Vacia el texto, la cotizacion y el carrito">Limpiar todo</button>
@@ -937,17 +937,17 @@ function cerrarPegarListado(){
    ------------------------------------------------------------
    Metagame usa parseLine posicional estricto: "qty nombre SET numero".
    Sirve para jugadores de torneo que copian de Limitless/PTCGL.
-   Los coleccionistas de " + CFG.SHEET_NAME + " escriben mucho mas suelto, asi que
+   Los coleccionistas de Charmander escriben mucho mas suelto, asi que
    aca el parser es hibrido: extrae la cantidad y deja el RESTO como
    tokens libres que se cruzan contra nombre + codSet + nombre de set
    + numero + cod_int. Eso acepta los dos mundos:
 
-     4 " + CFG.SHEET_NAME + " EVS 49        (formato Limitless completo)
-     2 " + CFG.SHEET_NAME + " Evolving Skies (nombre + set escrito largo)
-     " + CFG.SHEET_NAME + " PGO 28           (sin cantidad)
-     Flying " + CFG.SHEET_NAME + " x3        (cantidad al final)
-     " + CFG.SHEET_NAME + " 25               (nombre + numero)
-     " + CFG.SHEET_NAME + "                  (solo nombre)
+     4 Charmander EVS 49        (formato Limitless completo)
+     2 Charmander Evolving Skies (nombre + set escrito largo)
+     Charmander PGO 28           (sin cantidad)
+     Flying Charmander x3        (cantidad al final)
+     Charmander 25               (nombre + numero)
+     Charmander                  (solo nombre)
 
    Busqueda en 3 fases, igual criterio que findGrupo de Metagame:
      Fase 1: todos los tokens calzan  -> match exacto
@@ -975,7 +975,7 @@ function parsearLineaPK(linea){
   var qty=null;
   var toks=l.split(/\s+/).filter(Boolean);
 
-  // cantidad al inicio: "4 " + CFG.SHEET_NAME + " ..."
+  // cantidad al inicio: "4 Charmander ..."
   if(toks.length>1 && /^\d{1,2}$/.test(toks[0]) && parseInt(toks[0],10)>0 && parseInt(toks[0],10)<=99){
     qty=parseInt(toks[0],10);
     toks=toks.slice(1);
@@ -986,7 +986,7 @@ function parsearLineaPK(linea){
     var m=ult.match(/^[xX](\d{1,2})$/);
     if(m){ qty=parseInt(m[1],10); toks=toks.slice(0,-1); }
   }
-  // cantidad tras coma: "" + CFG.SHEET_NAME + ", 2"
+  // cantidad tras coma: "Charmander, 2"
   if(qty===null){
     var mc=l.match(/,\s*(\d{1,2})\s*$/);
     if(mc){ qty=parseInt(mc[1],10); toks=l.replace(/,\s*\d{1,2}\s*$/,'').trim().split(/\s+/).filter(Boolean); }
@@ -1151,7 +1151,7 @@ function limpiarListaPK(){
 
 /* ---------- REPARTO DE STOCK ENTRE LINEAS ----------
    Dos lineas distintas pueden resolver a la MISMA carta
-   ("2 " + CFG.SHEET_NAME + " EVS 49" y "2 " + CFG.SHEET_NAME + " Evolving Skies").
+   ("2 Charmander EVS 49" y "2 Charmander Evolving Skies").
    Sin repartir, el resumen sumaba 4 unidades aunque el stock
    fuera 3, y despues el carrito topeaba en 3: los totales no
    coincidian. Aca se asigna en orden de aparicion y cada linea
